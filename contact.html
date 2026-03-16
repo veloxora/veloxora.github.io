@@ -57,22 +57,59 @@
     .chat-input { display:flex; padding:1rem; background:#111118; }
     .chat-input input { flex:1; padding:12px; border:none; border-radius:30px; background:#22222a; color:white; }
     .chat-input button { background:var(--accent); border:none; width:44px; height:44px; border-radius:50%; margin-left:8px; cursor:pointer; }
+    /* Hamburger Menu for Mobile */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10,10,15,0.98);
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
   </style>
 </head>
 <body>
 
   <header>
     <nav>
-      <div class="logo">Veloxora</div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="ai.html">AI Dev</a>
-        <a href="web.html">Web Dev</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </nav>
+  <div class="logo">Veloxora</div>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="ai.html">AI Dev</a>
+    <a href="web.html">Web Dev</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="hamburger" id="hamburger">☰</div>
+</nav>
   </header>
 
   <section style="padding-top:180px; text-align:center;">
@@ -176,6 +213,19 @@
     document.getElementById('userInput').addEventListener('keypress', e => {
       if (e.key === 'Enter') sendMessage();
     });
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Close menu when clicking a link (optional but nice)
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
   </script>
 </body>
 </html>
