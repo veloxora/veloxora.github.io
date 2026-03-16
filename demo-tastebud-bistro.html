@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TasteBud Bistro — Brampton | Demo by Veloxora</title>
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --text: #1f2937;
+      --dark: #111827;
+      --accent: #7f1d1d;     /* deep burgundy/red */
+      --accent2: #d97706;    /* warm gold */
+      --cream: #fef3e8;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { background: var(--dark); color: white; padding: 1rem 5%; position: fixed; width: 100%; z-index: 999; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 2.2rem; font-weight: 800; color: var(--accent2); }
+    .hero { height: 90vh; background: linear-gradient(rgba(31,41,55,0.6), rgba(31,41,55,0.6)), url('https://picsum.photos/id/1080/1920/1080') center/cover no-repeat; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+    h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
+    .cta { padding: 1.2rem 3rem; background: var(--accent2); color: white; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; }
+    section { padding: 100px 5%; max-width: 1200px; margin: auto; }
+    h2 { font-size: 2.8rem; text-align: center; margin-bottom: 3rem; color: var(--accent); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+    .menu-item { font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+    footer { background: var(--dark); color: white; padding: 3rem 5%; text-align: center; }
+    /* MENU/ORDER BOT */
+    #chat-bubble { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; cursor: pointer; box-shadow: 0 0 30px rgba(127,29,29,0.5); z-index: 10000; }
+    #chat-window { position: fixed; bottom: 120px; right: 30px; width: 380px; height: 520px; background: white; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.25); display: none; flex-direction: column; overflow: hidden; z-index: 10001; }
+    .chat-header { background: var(--accent); color: white; padding: 1rem; font-weight: 700; display: flex; justify-content: space-between; }
+    .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; background: var(--cream); }
+    .message { margin: 12px 0; padding: 12px 16px; border-radius: 12px; max-width: 85%; }
+    .bot { background: #fef3e8; align-self: flex-start; color: var(--dark); }
+    .user { background: var(--accent2); color: white; align-self: flex-end; }
+    .chat-input { padding: 1rem; background: white; display: flex; border-top: 1px solid #eee; }
+    .chat-input input { flex: 1; padding: 12px 16px; border: 1px solid #ddd; border-radius: 30px; font-size: 1rem; }
+    .chat-input button { background: var(--accent); color: white; border: none; width: 48px; height: 48px; border-radius: 50%; margin-left: 10px; cursor: pointer; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">TasteBud Bistro</div>
+      <div style="font-weight:600;">Brampton • (905) 555-0789 • Open 11AM–10PM</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Where Flavor Meets Comfort</h1>
+      <p style="font-size:1.6rem; margin:1.5rem 0;">Fresh ingredients, bold tastes, warm atmosphere. Reservations recommended.</p>
+      <a href="#" onclick="document.getElementById('chat-bubble').click()" class="cta">Reserve a Table or Order Now</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Featured Menu Items</h2>
+    <div class="grid">
+      <div class="card">
+        <p class="menu-item">Grilled Salmon with Herb Sauce</p>
+        <p>$28 • Fresh Atlantic salmon, lemon-dill cream, seasonal vegetables</p>
+      </div>
+      <div class="card">
+        <p class="menu-item">Truffle Mushroom Risotto</p>
+        <p>$24 • Creamy arborio rice, wild mushrooms, parmesan</p>
+      </div>
+      <div class="card">
+        <p class="menu-item">Beef Tenderloin</p>
+        <p>$42 • 8oz cut, red wine reduction, garlic mash</p>
+      </div>
+      <div class="card">
+        <p class="menu-item">Chocolate Lava Cake</p>
+        <p>$12 • Warm center, vanilla bean ice cream</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#fef3e8;">
+    <h2 style="color:var(--accent);">About TasteBud</h2>
+    <div style="max-width:900px; margin:auto; text-align:center; font-size:1.3rem;">
+      <p>Family-owned bistro in the heart of Brampton since 2018. We focus on seasonal, locally-sourced ingredients and a cozy, welcoming vibe.</p>
+      <p>Whether you're here for date night, family dinner, or a quick business lunch — we've got you covered.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Guests Say</h2>
+    <div class="grid">
+      <div class="card">"Best risotto in Brampton! Service was amazing." – Lisa K.</div>
+      <div class="card">"The salmon was cooked perfectly. Will be back!" – Raj P.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Demo Project by Veloxora • Fully static restaurant site with menu/order bot</p>
+  </footer>
+
+  <!-- TasteBud Menu/Order Bot -->
+  <div id="chat-bubble" onclick="toggleChat()">🍽️</div>
+  <div id="chat-window">
+    <div class="chat-header">
+      <span>TasteBud Assistant</span>
+      <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+    </div>
+    <div class="chat-messages" id="messages">
+      <div class="message bot">Hi! Welcome to TasteBud Bistro. Looking to reserve a table, ask about the menu, or place an order? 😊</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="What would you like?">
+      <button onclick="sendMessage()">→</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const win = document.getElementById('chat-window');
+      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msgs = document.getElementById('messages');
+      msgs.innerHTML += `<div class="message user">${text}</div>`;
+      input.value = '';
+
+      let reply = "Thanks! Our team will follow up soon. Anything else?";
+      const t = text.toLowerCase();
+
+      if (t.includes('reserve') || t.includes('book') || t.includes('table') || t.includes('reservation')) {
+        reply = "Perfect! How many people? What date and time? (We recommend booking 24–48 hours ahead for weekends.)";
+      } else if (t.includes('menu') || t.includes('what do you have') || t.includes('dish')) {
+        reply = "We have grilled salmon ($28), truffle risotto ($24), beef tenderloin ($42), and more. Want full menu details or specials?";
+      } else if (t.includes('order') || t.includes('takeout') || t.includes('delivery')) {
+        reply = "Ordering takeout? Tell me what you'd like (e.g., 'salmon for 2') and we'll prepare it for pickup or delivery.";
+      } else if (t.includes('price') || t.includes('cost')) {
+        reply = "Mains range $22–$42. Appetizers $12–$18. Desserts $10–$14. Want recommendations?";
+      } else if (t.includes('location') || t.includes('address') || t.includes('where')) {
+        reply = "We're at 123 Main St, Brampton, ON. Plenty of parking and easy access!";
+      }
+
+      setTimeout(() => {
+        msgs.innerHTML += `<div class="message bot">${reply}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 600);
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>

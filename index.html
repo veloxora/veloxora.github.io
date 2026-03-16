@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloxora — Static Websites + AI Chatbots</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --text: #e0e0ff;
+      --accent: #00f0ff;
+      --accent2: #ff00aa;
+      --glow: 0 0 25px rgba(0,240,255,0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: fixed; top:0; width:100%; padding:1.2rem 5%;
+      background: rgba(10,10,15,0.95); backdrop-filter: blur(10px); z-index: 999;
+    }
+    nav { max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-size:2.2rem; font-weight:900; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; color:transparent; }
+    .nav-links a { margin-left:2.5rem; color:var(--text); text-decoration:none; font-weight:500; transition:0.3s; }
+    .nav-links a:hover { color:var(--accent); text-shadow:var(--glow); }
+    section { padding:120px 5% 80px; max-width:1400px; margin:0 auto; }
+    h1 { font-size:5.5rem; text-align:center; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; color:transparent; text-shadow:var(--glow); }
+    .tagline { font-size:1.7rem; text-align:center; margin:2rem 0; opacity:0.9; }
+    .cta { padding:1.1rem 3rem; background:var(--accent2); color:white; border-radius:50px; text-decoration:none; font-weight:700; display:inline-block; transition:0.4s; box-shadow:var(--glow); }
+    .cta:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(255,0,170,0.4); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
+    .card { background:#111118; padding:2.5rem; border-radius:16px; border:1px solid rgba(0,240,255,0.1); transition:0.4s; }
+    .card:hover { transform:translateY(-12px); border-color:var(--accent); box-shadow:var(--glow); }
+    footer { text-align:center; padding:4rem; background:#050509; border-top:1px solid rgba(0,240,255,0.1); }
+    /* FLOATING CHATBOT */
+    #chat-bubble { position:fixed; bottom:30px; right:30px; width:65px; height:65px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; cursor:pointer; box-shadow:0 0 30px rgba(0,240,255,0.8); z-index:10000; }
+    #chat-window { position:fixed; bottom:110px; right:30px; width:380px; height:520px; background:#111118; border-radius:16px; box-shadow:0 0 40px rgba(0,240,255,0.6); display:none; flex-direction:column; overflow:hidden; z-index:10001; }
+    .chat-header { background:var(--accent); color:#0a0a0f; padding:1rem; font-weight:700; display:flex; justify-content:space-between; }
+    .chat-messages { flex:1; padding:1rem; overflow-y:auto; background:#0a0a0f; }
+    .message { margin:10px 0; padding:12px 16px; border-radius:12px; max-width:85%; }
+    .bot { background:#22222a; align-self:flex-start; }
+    .user { background:var(--accent2); color:white; align-self:flex-end; }
+    .chat-input { display:flex; padding:1rem; background:#111118; }
+    .chat-input input { flex:1; padding:12px; border:none; border-radius:30px; background:#22222a; color:white; }
+    .chat-input button { background:var(--accent); border:none; width:44px; height:44px; border-radius:50%; margin-left:8px; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Veloxora</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="ai.html">AI Dev</a>
+        <a href="web.html">Web Dev</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section style="height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,#0a0a0f,#12001a);">
+    <div>
+      <h1>Velocity in AI & Web</h1>
+      <p class="tagline">Custom static websites + intelligent AI chatbots — fast, lightweight, built to grow your business.</p>
+      <a href="contact.html" class="cta">Get Your Free Strategy Call</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="font-size:3.5rem; text-align:center; margin-bottom:4rem;">What We Deliver</h2>
+    <div class="grid">
+      <div class="card"><h3>AI Chatbots</h3><p>Smart bots trained on your content — real answers, lead capture, 24/7 engagement.</p></div>
+      <div class="card"><h3>Static Websites</h3><p>Ultra-fast, secure custom sites (pure HTML/CSS/JS) — no plugins, no bloat, easy to host anywhere.</p></div>
+      <div class="card"><h3>Ongoing Support</h3><p>Affordable monthly plans to keep everything sharp and converting.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Veloxora • Brampton, ON • Built for speed & results</p>
+  </footer>
+
+  <!-- Veloxora AI Assistant -->
+  <div id="chat-bubble" onclick="toggleChat()">💬</div>
+  <div id="chat-window">
+    <div class="chat-header">
+      <span>Veloxora AI Assistant</span>
+      <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+    </div>
+    <div class="chat-messages" id="messages">
+      <div class="message bot">Hey! I'm Veloxora's AI Assistant. Ask me about our static websites, AI chatbots, pricing, bundles, or how to get in touch.</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button onclick="sendMessage()">→</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const win = document.getElementById('chat-window');
+      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim().toLowerCase();
+      if (!text) return;
+
+      const msgs = document.getElementById('messages');
+      msgs.innerHTML += `<div class="message user">${input.value}</div>`;
+      input.value = '';
+
+      let reply = "Thanks for asking! Veloxora specializes in custom static websites and smart AI chatbots. What exactly are you looking for?";
+
+      // Pricing & Bundles
+      if (text.includes('price') || text.includes('cost') || text.includes('how much') || text.includes('pricing')) {
+        if ((text.includes('website') || text.includes('site') || text.includes('web')) &&
+            (text.includes('with') || text.includes('including') || text.includes('plus') || text.includes('and') || text.includes('bundle') || text.includes('chatbot') || text.includes('ai') || text.includes('bot'))) {
+          reply = "A custom static website bundled with an AI chatbot starts at $1,400 (basic site + basic chatbot). For more complex setups (advanced site features + smart chatbot with ordering/booking/payments), prices can go up to $6,500 and up. We can give you an exact quote after a quick chat!";
+        }
+        else if (text.includes('website') || text.includes('site') || text.includes('web')) {
+          reply = "Static websites start at $500 for a basic site. Complex business sites go up to $5,000 and above.";
+        }
+        else if (text.includes('chatbot') || text.includes('ai') || text.includes('bot')) {
+          reply = "AI chatbots start at $1,000 for a basic version. Complex ones (with ordering, booking, payments, etc.) are up to $6,000 and up.";
+        }
+        else {
+          reply = "Websites: $500 (basic) to $5,000+ (complex business site).<br>AI Chatbots: $1,000 (basic) to $6,000+ (advanced with ordering/payments).<br>Bundled (website + chatbot): $1,400 (basic) to $6,500+ (complex).";
+        }
+      }
+      // Specific topics
+      else if (text.includes('website') || text.includes('site') || text.includes('web')) {
+        reply = "We build pure static websites using HTML, CSS, and JavaScript — super fast, secure, and lightweight. Basic from $500, complex business sites from $5,000.";
+      }
+      else if (text.includes('chatbot') || text.includes('ai') || text.includes('bot')) {
+        reply = "Our AI chatbots are trained on your content so they answer accurately. Basic version starts at $1,000. Advanced ones with ordering, booking, or payments start at $6,000.";
+      }
+      else if (text.includes('contact') || text.includes('email') || text.includes('reach') || text.includes('how to get in touch') || text.includes('talk') || text.includes('message')) {
+        reply = "You can reach Veloxora anytime at contact.veloxora@gmail.com. We'll get back to you quickly!";
+      }
+      else if (text.includes('about you') || text.includes('who are you') || text.includes('business') || text.includes('veloxora')) {
+        reply = "Veloxora is a Brampton-based agency that creates affordable custom static websites and intelligent AI chatbots for small businesses.";
+      }
+
+      setTimeout(() => {
+        msgs.innerHTML += `<div class="message bot">${reply}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 600);
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>

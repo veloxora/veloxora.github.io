@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpeedFix Auto – Demo Refresh by Veloxora</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --text: #e2e8f0;
+      --dark: #000000;
+      --accent: #3b82f6;     /* electric blue */
+      --accent2: #60a5fa;    /* lighter blue */
+      --silver: #cbd5e1;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { background: var(--dark); padding: 1.2rem 5%; position: fixed; width: 100%; z-index: 999; border-bottom: 1px solid #1e293b; }
+    nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 2.2rem; font-weight: 800; color: var(--accent); letter-spacing: 1px; }
+    .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://picsum.photos/id/1060/1920/1080') center/cover no-repeat; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+    h1 { font-size: 4.2rem; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(59,130,246,0.4); }
+    .cta { padding: 1.2rem 3rem; background: var(--accent); color: white; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; display: inline-block; box-shadow: 0 0 20px rgba(59,130,246,0.5); }
+    section { padding: 100px 5%; max-width: 1200px; margin: auto; }
+    h2 { font-size: 2.8rem; text-align: center; margin-bottom: 3rem; color: var(--accent2); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card { background: #1e293b; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; }
+    .service-icon { font-size: 3rem; margin-bottom: 1rem; color: var(--accent); }
+    footer { background: var(--dark); color: var(--silver); padding: 3rem 5%; text-align: center; border-top: 1px solid #1e293b; }
+    /* AUTO SERVICE BOT */
+    #chat-bubble { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; cursor: pointer; box-shadow: 0 0 30px rgba(59,130,246,0.6); z-index: 10000; }
+    #chat-window { position: fixed; bottom: 120px; right: 30px; width: 380px; height: 520px; background: #1e293b; border-radius: 16px; box-shadow: 0 10px 50px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; z-index: 10001; border: 1px solid #334155; }
+    .chat-header { background: var(--accent); color: white; padding: 1rem; font-weight: 700; display: flex; justify-content: space-between; }
+    .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; background: #0f1117; }
+    .message { margin: 12px 0; padding: 12px 16px; border-radius: 12px; max-width: 85%; }
+    .bot { background: #1e40af; align-self: flex-start; color: white; }
+    .user { background: var(--accent2); color: white; align-self: flex-end; }
+    .chat-input { padding: 1rem; background: #1e293b; display: flex; border-top: 1px solid #334155; }
+    .chat-input input { flex: 1; padding: 12px 16px; border: 1px solid #334155; border-radius: 30px; background: #0f1117; color: white; font-size: 1rem; }
+    .chat-input button { background: var(--accent); color: white; border: none; width: 48px; height: 48px; border-radius: 50%; margin-left: 10px; cursor: pointer; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">SpeedFix Auto</div>
+      <div style="font-weight:600;">Mississauga • (905) 555-0777 • Open Mon–Sat 8AM–6PM</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Your Car. Our Expertise.</h1>
+      <p style="font-size:1.6rem; margin:1.5rem 0;">Fast, reliable auto repairs & maintenance. Same-day service available.</p>
+      <a href="#" onclick="document.getElementById('chat-bubble').click()" class="cta">Get a Free Quote Now</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Services</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="service-icon">🔧</div>
+        <h3>Brake Repair</h3>
+        <p>Squeaking or soft brakes? We fix pads, rotors, calipers fast.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">🛢️</div>
+        <h3>Oil Change & Fluids</h3>
+        <p>Synthetic oil changes from $59. Full fluid checks included.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">⚡</div>
+        <h3>Diagnostics & Electrical</h3>
+        <p>Check engine light? Computer scan & repair in under an hour.</p>
+      </div>
+      <div class="card">
+        <div class="service-icon">🛞</div>
+        <h3>Tire Services</h3>
+        <p>Rotation, balancing, new tires — all major brands.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#1e293b;">
+    <h2 style="color:var(--accent2);">Why Choose SpeedFix</h2>
+    <div class="grid" style="text-align:center;">
+      <div class="card">ASE-Certified Technicians</div>
+      <div class="card">1-Year Warranty on Most Repairs</div>
+      <div class="card">Free Shuttle Service</div>
+      <div class="card">Transparent Pricing</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Customer Reviews</h2>
+    <div class="grid">
+      <div class="card">"Fixed my brakes same day — honest and affordable!" – Jamal R.</div>
+      <div class="card">"Great diagnostics. Saved me hundreds on unnecessary work." – Carla M.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Demo Project by Veloxora • Refreshed static auto shop site with AI service inquiry bot</p>
+  </footer>
+
+  <!-- SpeedFix Service Bot -->
+  <div id="chat-bubble" onclick="toggleChat()">🔧</div>
+  <div id="chat-window">
+    <div class="chat-header">
+      <span>SpeedFix Service Assistant</span>
+      <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+    </div>
+    <div class="chat-messages" id="messages">
+      <div class="message bot">Hey! Car trouble? Tell me what's going on (brakes, check engine, tires, etc.) or ask for a quote. We're ready to help!</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="What's up with your car?">
+      <button onclick="sendMessage()">→</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const win = document.getElementById('chat-window');
+      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msgs = document.getElementById('messages');
+      msgs.innerHTML += `<div class="message user">${text}</div>`;
+      input.value = '';
+
+      let reply = "Thanks for the details! We'll get back to you quickly with next steps.";
+      const t = text.toLowerCase();
+
+      if (t.includes('brake') || t.includes('squeak') || t.includes('stop')) reply = "Brake issue? We can inspect pads/rotors same day. Want to book now?";
+      else if (t.includes('oil') || t.includes('change') || t.includes('fluid')) reply = "Oil change special: $59 synthetic. Includes full inspection. Ready for today?";
+      else if (t.includes('tire') || t.includes('flat') || t.includes('rotation')) reply = "Tire service starts at $25 rotation/balance. Need new tires or repair?";
+      else if (t.includes('quote') || t.includes('price') || t.includes('cost')) reply = "Most diagnostics free. Repairs quoted after inspection — transparent pricing guaranteed.";
+      else if (t.includes('check engine') || t.includes('light') || t.includes('diagnostic')) reply = "Check engine light? We run full scan in 30 min. Most fixes same day.";
+
+      setTimeout(() => {
+        msgs.innerHTML += `<div class="message bot">${reply}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 600);
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
